@@ -1,10 +1,11 @@
 {
+  "name": "vgrid",
+  "version": "0.0.1",
   "private": true,
   "scripts": {
     "build": "rollup -c --environment BUILD:production",
     "postbuild": "tsc --esModuleInterop --declaration --declarationDir dist/types --outDir temp src/index.ts && rimraf temp/"
   },
-  "name": "myplugin",
   "main": "./dist/VGrid.js",
   "types": "./dist/types/index.d.ts",
   "devDependencies": {

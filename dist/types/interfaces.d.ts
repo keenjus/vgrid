@@ -17,9 +17,8 @@ export interface IHooks {
     beforeDisplayRow?: (row: IRow) => void;
 }
 export interface IDataSource {
-    /** Store action for querying items */
-    read: string;
-    delete?: string;
+    read: Function;
+    delete?: Function;
     pageSize: number;
     schema?: ISchema;
 }

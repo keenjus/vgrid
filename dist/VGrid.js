@@ -83,7 +83,7 @@ var script = Vue.extend({
                 take: this.take,
                 skip: this.skip
             };
-            return this.$store.dispatch(this.options.dataSource.read, options)
+            return this.options.dataSource.read(options)
                 .then(function (data) {
                 _this.setRows(data);
             });
@@ -126,11 +126,11 @@ var script = Vue.extend({
                 hook(row).then(function (result) {
                     if (!result)
                         return;
-                    _this.$store.dispatch(deleteAction, row.id).then(function () { return _this.refresh(); });
+                    deleteAction(row).then(function () { return _this.refresh(); });
                 });
             }
             else {
-                this.$store.dispatch(deleteAction, row.id).then(function () { return _this.refresh(); });
+                deleteAction(row).then(function () { return _this.refresh(); });
             }
         }
     }

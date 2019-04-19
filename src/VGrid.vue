@@ -126,7 +126,7 @@ export default Vue.extend({
         take: this.take,
         skip: this.skip,
       };
-      return this.$store.dispatch(this.options.dataSource.read, options)
+      return this.options.dataSource.read(options)
         .then((data) => {
           this.setRows(data);
         });
@@ -167,10 +167,10 @@ export default Vue.extend({
       if (hook) {
         hook(row).then((result) => {
           if (!result) return;
-          this.$store.dispatch(deleteAction, row.id).then(() => this.refresh());
+          deleteAction(row).then(() => this.refresh());
         });
       } else {
-        this.$store.dispatch(deleteAction, row.id).then(() => this.refresh());
+        deleteAction(row).then(() => this.refresh());
       }
     },
   },

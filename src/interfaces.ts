@@ -20,9 +20,8 @@ export interface IHooks {
 }
 
 export interface IDataSource {
-  /** Store action for querying items */
-  read: string;
-  delete?: string;
+  read: Function;
+  delete?: Function;
   pageSize: number;
   schema?: ISchema;
 }

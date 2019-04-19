@@ -20,8 +20,8 @@ export interface IHooks {
 }
 
 export interface IDataSource {
-  read: Function;
-  delete?: Function;
+  read: (options: any) => Promise<any>;
+  delete?: (item: any) => Promise<any>;
   pageSize: number;
   schema?: ISchema;
 }

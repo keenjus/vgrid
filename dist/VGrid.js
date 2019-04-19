@@ -18,13 +18,13 @@ function dateTimeTemplate() {
 
 var script = Vue.extend({
     props: {
-        options: Object
+        options: Object,
     },
     data: function () {
         return {
             rows: [],
             total: 0,
-            page: 0
+            page: 0,
         };
     },
     mounted: function () {
@@ -33,7 +33,7 @@ var script = Vue.extend({
     watch: {
         page: function () {
             this.loadFromDataSource();
-        }
+        },
     },
     computed: {
         hasPrevPage: function () {
@@ -63,7 +63,7 @@ var script = Vue.extend({
         },
         visibleColumns: function () {
             return this.wrappedColumns.filter(function (column) { return column.hide !== true; });
-        }
+        },
     },
     methods: {
         nextPage: function () {
@@ -81,7 +81,7 @@ var script = Vue.extend({
             var options = {
                 force: (opts && opts.force) || false,
                 take: this.take,
-                skip: this.skip
+                skip: this.skip,
             };
             return this.options.dataSource.read(options)
                 .then(function (data) {
@@ -118,7 +118,7 @@ var script = Vue.extend({
         },
         deleteRow: function (row) {
             var _this = this;
-            var deleteAction = this.options.dataSource["delete"];
+            var deleteAction = this.options.dataSource.delete;
             if (!deleteAction)
                 return;
             var hook = this.options.hooks && this.options.hooks.beforeDelete;
@@ -132,8 +132,8 @@ var script = Vue.extend({
             else {
                 deleteAction(row).then(function () { return _this.refresh(); });
             }
-        }
-    }
+        },
+    },
 });
 
 function normalizeComponent(template, style, script, scopeId, isFunctionalTemplate, moduleIdentifier

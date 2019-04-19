@@ -10,13 +10,7 @@ export default {
   },
   external: ['vue', 'moment'],
   plugins: [
-    typescript({
-      tsconfig: false,
-      experimentalDecorators: true,
-      module: 'es2015',
-      declaration: true,
-      declarationDir: "dist/types"
-    }),
+    typescript(),
     commonjs(),
     vue()
   ]

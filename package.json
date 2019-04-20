@@ -3,10 +3,18 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
-    "build": "rollup -c --environment BUILD:production",
+    "build": "npm run build:umd && npm run build:es && npm run build:unpkg",
+    "build:umd": "rollup -c --environment BUILD:production --format umd --file dist/VGrid.umd.js",
+    "build:es": "rollup -c --environment BUILD:production --format es --file dist/VGrid.esm.js",
+    "build:unpkg": "rollup -c --environment BUILD:production --format iife  --file dist/VGrid.min.js",
     "postbuild": "tsc --esModuleInterop --declaration --declarationDir dist/types --outDir temp src/index.ts && rimraf temp/"
   },
-  "main": "./dist/VGrid.js",
+  "main": "./dist/VGrid.umd.js",
+  "module": "./dist/VGrid.esm.js",
+  "unpkg": "./dist/VGrid.min.js",
+  "browser": {
+    "./sfc": "src/VGrid.vue"
+  },
   "types": "./dist/types/index.d.ts",
   "devDependencies": {
     "rimraf": "^2.6.3",

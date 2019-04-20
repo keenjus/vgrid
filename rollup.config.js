@@ -5,8 +5,12 @@ import commonjs from 'rollup-plugin-commonjs'
 export default {
   input: 'src/index.ts',
   output: {
-    format: 'esm',
-    file: 'dist/VGrid.js'
+    name: 'VGrid',
+    exports: 'named',
+    globals: {
+      'vue': 'Vue',
+      'moment': 'moment'
+    }
   },
   external: ['vue', 'moment'],
   plugins: [
